@@ -20,7 +20,7 @@ router.get("/:theWord", function(req, res, next) {
     const l33tChar = l33tMap
       .filter(f => c.toLowerCase() === f.char)
       .map(r => r.mapTo)
-      .reduce((out, ch) => (out = ch ? ch : out), c);
+      .reduce((out, ch) => (out = ch), c);
     result += l33tChar;
   });
 
