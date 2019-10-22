@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/:theWord", function(req, res, next) {
+function l33t(original) {
   const l33tMap = [
     { char: "a", mapTo: "4" },
     { char: "e", mapTo: "3" },
@@ -12,7 +12,6 @@ router.get("/:theWord", function(req, res, next) {
     { char: "t", mapTo: "7" }
   ];
 
-  const original = req.params.theWord;
   const charList = original.split("");
   let result = "";
 
@@ -23,6 +22,13 @@ router.get("/:theWord", function(req, res, next) {
       .reduce((out, ch) => (out = ch), c);
     result += l33tChar;
   });
+
+  return result;
+}
+
+router.get("/:theWord", function(req, res, next) {
+  const original = req.params.theWord;
+  const result = l33t(original);
 
   res.json({ original, result });
 });

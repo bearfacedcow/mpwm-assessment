@@ -2,8 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 /* GET home page. */
-router.get("/:theWord", function(req, res, next) {
-  const original = req.params.theWord;
+function rle(original) {
   const charList = original.split("");
 
   let lastLetter = "";
@@ -21,6 +20,13 @@ router.get("/:theWord", function(req, res, next) {
   });
 
   result += letterCount ? `${lastLetter}${letterCount}` : "";
+
+  return result;
+}
+
+router.get("/:theWord", function(req, res, next) {
+  const original = req.params.theWord;
+  result = rle(original);
 
   res.json({ original, result });
 });
